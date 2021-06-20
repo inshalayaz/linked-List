@@ -7,7 +7,7 @@ struct Node{
 struct Node *head = NULL;
 
 void createNode(int value){
-struct Node *temp,*temp2,*curr;
+struct Node *temp,*temp2;
     
     temp = (struct Node *)malloc(sizeof(struct Node));
     
