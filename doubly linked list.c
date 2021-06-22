@@ -7,28 +7,44 @@ struct Node{
 struct Node *head;
 
 
-void createNode(int value){
+void insertAtHead(int value){
+    struct Node *newnode = (struct Node*)malloc(sizeof(struct Node));
 
-struct Node *temp = (struct Node*)malloc(sizeof(struct Node));
+    newnode->data = value;
+    newnode->next = NULL;
+    newnode->prev = NULL;
 
-temp->data = value;
-temp->next= NULL;
-temp->prev = NULL;
+    if(head == NULL) {       
+        head = newnode;
+    }else{
+    head->prev = newnode;
+    newnode->next = head;
 
-if(head == NULL){
-    head = temp;
-}else{
-    struct Node *curr = head;
-
-    while(curr->next != NULL){
-        curr = curr->next;
+    head = newnode;
     }
-    curr->next = temp;
-    temp->prev = curr;
-    curr = temp;
-    }
-
 }
+
+void insertAtTail(int value){
+    struct Node *newnode = (struct Node*)malloc(sizeof(struct Node));
+
+    newnode->data = value;
+    newnode->next = NULL;
+    newnode->prev = NULL;
+
+    if(head == NULL) {       
+        head = newnode;
+    }else{
+        struct Node *curr = head;
+        while(curr->next != NULL){
+            curr = curr->next;
+        }
+        
+        curr->next = newnode;
+        newnode->prev = curr;
+
+    }
+}
+
 
 void printNodes(){
     struct Node *curr = head;
@@ -39,12 +55,27 @@ void printNodes(){
     }
 }
 
-void main(){
-    createNode(141);
-    createNode(302);
-    createNode(164);
-    createNode(530);
-    createNode(474);
+void reversePrint(){
+    struct Node *curr = head;
+    while(curr->next != NULL){
+        curr = curr->next;
+    }
+    printf("Reverse: ");
 
-    printNodes();
+    while(curr != NULL){
+        printf("%d\n", curr->data);
+        curr = curr->prev;
+    }
+}
+
+
+
+void main(){
+    insertAtTail(141);
+    insertAtTail(302);
+    insertAtTail(164);
+    insertAtTail(530);
+    insertAtTail(474);
+
+    reversePrint();
 }
