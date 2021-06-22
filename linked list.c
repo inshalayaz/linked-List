@@ -71,6 +71,6 @@ void main(){
     createNode(530);
     createNode(474);
 
-    deleteNode(474);
+    deleteNode(530);
     printNodes();
 }
